@@ -2,7 +2,7 @@
   "name": "api-server",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "api server",
   "keywords": [],
   "dependencies": {
     "include-all": "^1.0.0",
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git://github.com/ailinliu/api-server.git"
   },
-  "author": "ailinliu",
+  "author": "alincode <alincode@gmail.com>",
   "license": "",
   "devDependencies": {
     "babel-core": "^6.18.2",
