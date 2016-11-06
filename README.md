@@ -35,3 +35,17 @@ Basic Examples:
     $ pm2 deploy production
     Else you have to tell PM2 the name of your ecosystem file
 ```
+
+### troubleshoptt
+
+**Question**
+
+```
+fatal: no upstream configured for branch 'master'
+```
+
+**fix**
+
+```
+git branch --set-upstream-to=origin/master master
+```
