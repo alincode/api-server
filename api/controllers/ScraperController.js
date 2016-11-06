@@ -1,24 +1,34 @@
-// var digikey = require('digikey-scraper-sandbox');
-
 // ScraperController
 
 module.exports = {
-	info: async(req, res) => {
+	query: async(req, res) => {
 		try {
+			let results = [];
+			let result = await DigikeyScraper.getResult(null,
+				'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259'
+			);
+			results.push(result);
 			return res.ok({
-				message: 'ok'
+				success: true,
+				results: results
 			});
 		} catch (e) {
 			return res.serverError(e);
 		}
 	},
-	scraper: async(req, res) => {
+	create: async(req, res) => {
 		try {
-			// let result = await digikey.product({
-			// 	url: 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259'
-			// });
-			// console.log("==========> result:", result);
-			return res.ok();
+			let {
+				html, url
+			} = req.body;
+
+			let results = [];
+			let result = await DigikeyScraper.getResult(html, url);
+			results.push(result);
+			return res.ok({
+				success: true,
+				results: results
+			});
 		} catch (e) {
 			return res.serverError(e);
 		}
