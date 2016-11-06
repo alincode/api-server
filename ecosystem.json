@@ -11,7 +11,7 @@
   }],
 
   "deploy": {
-    "dev": {
+    "production": {
       "user": "root",
       "host": "114.35.96.3",
       "port": "9952",
