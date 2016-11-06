@@ -1,5 +1,4 @@
-// ScraperController
-
+// ParserController
 module.exports = {
 	query: async(req, res) => {
 		try {

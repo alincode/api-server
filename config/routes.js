@@ -31,8 +31,8 @@ module.exports.routes = {
    * `assets` directory)                                                      *
    *                                                                          *
    ***************************************************************************/
-  'get /api/v1/scraper': 'ScraperController.query',
-  'post /api/v1/scraper': 'ScraperController.create'
+  'get /api/v1/parsers': 'ParserController.query',
+  'post /api/v1/parsers': 'ParserController.create'
 
   /***************************************************************************
    *                                                                          *
