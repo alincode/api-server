@@ -11,14 +11,14 @@
   }],
 
   "deploy": {
-    "production": {
+    "dev": {
       "user": "root",
       "host": "114.35.96.3",
       "port": "9952",
       "ref": "origin/master",
       "repo": "git@github.com:alincode/api-server.git",
       "path": "/root/service",
-      "post-deploy": "npm i && pm2 startOrRestart ecosystem.json --env production",
+      "post-deploy": "npm i && pm2 startOrRestart ecosystem.json --env dev",
       "env": {
         "NODE_ENV": "development"
       }
