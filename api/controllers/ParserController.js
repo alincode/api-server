@@ -1,6 +1,8 @@
 // ParserController
 module.exports = {
 	query: async(req, res) => {
+		let data = req.body;
+
 		try {
 			let results = [];
 			let result = await DigikeyScraper.getResult(null,
@@ -16,13 +18,11 @@ module.exports = {
 		}
 	},
 	create: async(req, res) => {
-		try {
-			let {
-				html, url
-			} = req.body;
+		let data = req.body;
 
+		try {
 			let results = [];
-			let result = await DigikeyScraper.getResult(html, url);
+			let result = await DigikeyScraper.getResult(data.html, data.url);
 			results.push(result);
 			return res.ok({
 				success: true,
