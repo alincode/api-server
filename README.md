@@ -24,6 +24,10 @@ pm2 deploy dev exec "pm2 restart all"
 pm2 deploy production
 ```
 
+### install
+
+* [Centos install mongo](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-centos-7)
+
 ### troubleshoptt
 
 **Question**
