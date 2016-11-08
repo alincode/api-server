@@ -31,8 +31,10 @@ module.exports.routes = {
    * `assets` directory)                                                      *
    *                                                                          *
    ***************************************************************************/
-  'get /api/v1/parsers': 'ParserController.query',
-  'post /api/v1/parsers': 'ParserController.create'
+  'get /api/v1/parsers': 'ParserController.find',
+  'post /api/v1/parsers': 'ParserController.create',
+
+  'get /api/v1/errors': 'ParseErrorController.find',
 
   /***************************************************************************
    *                                                                          *
