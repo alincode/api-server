@@ -47,7 +47,7 @@ module.exports = {
 				await parseError.save();
 				return res.ok({
 					success: false,
-					results: parseError
+					message: parseError
 				});
 			}
 		} catch (e) {
