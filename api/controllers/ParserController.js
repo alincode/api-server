@@ -53,5 +53,31 @@ module.exports = {
 		} catch (e) {
 			return res.serverError(e);
 		}
+	},
+	batch: async(req, res) => {
+		const {
+			ip, uuid, data
+		} = req.body;
+		try {
+			let products = [];
+			await Promise.each(data, async(row) => {
+				let {
+					html, url
+				} = row;
+				let result = await DigikeyScraper.getResult(html, url);
+				result.url = url;
+				result.ip = ip;
+				result.uuid = uuid;
+				let product = await Product.create(result);
+				products.push(product);
+				return row;
+			});
+			return res.ok({
+				success: true,
+				results: products
+			});
+		} catch (e) {
+			return res.serverError(e);
+		}
 	}
 };
