@@ -9,10 +9,10 @@ module.exports = {
 			// );
 			// await Product.create(result);
 
-			let products = await Product.find();
+			let grabStores = await GrabStore.find();
 			return res.ok({
 				success: true,
-				results: products
+				results: grabStores
 			});
 		} catch (e) {
 			return res.serverError(e);
@@ -31,12 +31,12 @@ module.exports = {
 			result.uuid = uuid;
 
 			if (result.sku) {
-				let product = await Product.create(result);
+				let grabStore = await GrabStore.create(result);
 				results.push(result);
 
 				return res.ok({
 					success: true,
-					results: product
+					results: grabStore
 				});
 			} else {
 				let parseError = await ParseError.create({
@@ -59,7 +59,7 @@ module.exports = {
 			ip, uuid, data
 		} = req.body;
 		try {
-			let products = [];
+			let grabStores = [];
 			await Promise.each(data, async(row) => {
 				let {
 					html, url
@@ -68,13 +68,13 @@ module.exports = {
 				result.url = url;
 				result.ip = ip;
 				result.uuid = uuid;
-				let product = await Product.create(result);
-				products.push(product);
+				let grabStore = await GrabStore.create(result);
+				grabStores.push(grabStore);
 				return row;
 			});
 			return res.ok({
 				success: true,
-				results: products
+				results: grabStores
 			});
 		} catch (e) {
 			return res.serverError(e);
