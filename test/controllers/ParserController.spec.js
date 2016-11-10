@@ -17,6 +17,8 @@ describe('ParserController', () => {
   it('POST /api/v1/parsers', (done) => {
 
     let formData = {
+      ip: '104.104.104.104',
+      uuid: '00000xxxxx0000',
       'url': 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259'
     };
 
@@ -35,7 +37,6 @@ describe('ParserController', () => {
   });
 
   it('POST /api/v1/batch/parsers', (done) => {
-
     let formData = {
       ip: '104.104.104.104',
       uuid: '00000xxxxx0000',
