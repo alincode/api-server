@@ -11,5 +11,13 @@
  */
 
 module.exports = {
-  port: process.env.PORT || 80
+  port: process.env.PORT || 80,
+  connections: {
+    mongodbServer: {
+      adapter: 'sails-mongo',
+      host: 'localhost',
+      port: 27017,
+      database: 'qegoo'
+    },
+  }
 };
