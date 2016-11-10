@@ -1,16 +1,12 @@
-// ParseError
+// Attribute
 module.exports = {
-  tableName: 'parse_error',
+  tableName: 'attributes',
   attributes: {
-    url: {
+    key: {
       type: 'string',
       required: true
     },
-    ip: {
-      type: 'string',
-      required: true
-    },
-    uuid: {
+    value: {
       type: 'string',
       required: true
     },
