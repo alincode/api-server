@@ -34,7 +34,7 @@ describe('ParserController', () => {
     }
   });
 
-  it.only('POST /api/v1/batch/parsers', (done) => {
+  it('POST /api/v1/batch/parsers', (done) => {
 
     let formData = {
       ip: '104.104.104.104',
