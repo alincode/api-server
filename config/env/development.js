@@ -12,6 +12,9 @@
 
 module.exports = {
   port: process.env.PORT || 80,
+  // log: {
+  //   level: 'verbose'
+  // }
   connections: {
     mongodbServer: {
       adapter: 'sails-mongo',
