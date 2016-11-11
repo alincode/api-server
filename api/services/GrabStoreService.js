@@ -1,11 +1,15 @@
+import utils from 'utility';
+
 // GrabStoreService
 module.exports = {
   save: async(url, ip, uuid, html, batchId) => {
-    let result = await DigikeyScraper.getResult(html, url);
+    let decodeHtml;
+    if (html) decodeHtml = utils.base64decode(html);
+    let result = await DigikeyScraper.getResult(decodeHtml, url);
     result.url = url;
     result.ip = ip;
     result.uuid = uuid;
-    if (html) result.html;
+    if (html) result.html = html;
     if (batchId) result.batchId;
 
     if (result.sku) {
