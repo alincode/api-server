@@ -18,7 +18,7 @@
       "ref": "origin/master",
       "repo": "git@github.com:alincode/api-server.git",
       "path": "/root/service",
-      "post-deploy": "npm i && pm2 startOrRestart ecosystem.json --env dev",
+      "post-deploy": "git pull && npm i && pm2 startOrRestart ecosystem.json --env dev",
       "env": {
         "NODE_ENV": "development"
       }
