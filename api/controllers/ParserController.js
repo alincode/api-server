@@ -1,14 +1,8 @@
 // ParserController
 module.exports = {
 	find: async(req, res) => {
-		let data = req.body;
-
 		try {
-			// let result = await DigikeyScraper.getResult(null,
-			// 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259'
-			// );
-			// await Product.create(result);
-
+			const data = req.body;
 			let grabStores = await GrabStore.find();
 			return res.ok({
 				success: true,
@@ -19,32 +13,21 @@ module.exports = {
 		}
 	},
 	create: async(req, res) => {
-		let {
-			html, url, uuid, ip
-		} = req.body;
-
 		try {
-			let results = [];
-			let result = await DigikeyScraper.getResult(html, url);
-			result.url = url;
-			result.ip = ip;
-			result.uuid = uuid;
+			const {
+				html, url, uuid, ip
+			} = req.body;
 
-			if (result.sku) {
-				let grabStore = await GrabStore.create(result);
-				results.push(result);
-
+			const grabStore = await GrabStoreService.save(url, ip, uuid, html)
+			if (grabStore) {
+				let results = [];
+				results.push(grabStore);
 				return res.ok({
 					success: true,
-					results: grabStore
+					results: results
 				});
 			} else {
-				let parseError = await ParseError.create({
-					url: url,
-					ip: ip,
-					uuid: uuid
-				});
-				await parseError.save();
+				const parseError = await ParseErrorService.save(url, ip, uuid, html);
 				return res.ok({
 					success: false,
 					message: parseError
@@ -55,20 +38,19 @@ module.exports = {
 		}
 	},
 	batch: async(req, res) => {
-		const {
-			ip, uuid, data
-		} = req.body;
 		try {
+			const {
+				ip, uuid, data, batchId
+			} = req.body;
+
 			let grabStores = [];
 			await Promise.each(data, async(row) => {
 				let {
 					html, url
 				} = row;
-				let result = await DigikeyScraper.getResult(html, url);
-				result.url = url;
-				result.ip = ip;
-				result.uuid = uuid;
-				let grabStore = await GrabStore.create(result);
+
+				let grabStore = await GrabStoreService.save(url, ip, uuid, html,
+					batchId);
 				grabStores.push(grabStore);
 				return row;
 			});
