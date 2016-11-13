@@ -5,7 +5,7 @@ module.exports = {
   save: async(url, ip, uuid, html, batchId) => {
     let decodeHtml;
     if (html) decodeHtml = utils.base64decode(html);
-    let result = await DigikeyScraper.getResult(decodeHtml, url);
+    let result = await ScraperService.getResult(decodeHtml, url);
     result.url = url;
     result.ip = ip;
     result.uuid = uuid;

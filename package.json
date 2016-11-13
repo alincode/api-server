@@ -5,6 +5,7 @@
   "description": "api server",
   "keywords": [],
   "dependencies": {
+    "digikey-cn-scraper": "git+https://github.com/alincode/digikey-cn-scraper.git",
     "digikey-scraper-sandbox": "git+https://github.com/alincode/digikey-scraper-sandbox.git",
     "include-all": "^1.0.0",
     "rc": "1.0.1",
