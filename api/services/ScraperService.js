@@ -1,4 +1,4 @@
-const DigikeyTw = require('digikey-scraper-sandbox').default;
+const DigikeyTw = require('digikey-tw-scraper').default;
 const DigikeyCn = require('digikey-cn-scraper').default;
 
 // DigikeyScraper

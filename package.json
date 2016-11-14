@@ -6,7 +6,7 @@
   "keywords": [],
   "dependencies": {
     "digikey-cn-scraper": "git+https://github.com/alincode/digikey-cn-scraper.git",
-    "digikey-scraper-sandbox": "git+https://github.com/alincode/digikey-scraper-sandbox.git",
+    "digikey-tw-scraper": "git+https://github.com/alincode/digikey-tw-scraper.git",
     "include-all": "^1.0.0",
     "rc": "1.0.1",
     "sails": "~0.12.9",
