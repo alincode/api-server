@@ -5,6 +5,7 @@
   "description": "api server",
   "keywords": [],
   "dependencies": {
+    "chip1stop-scraper": "git+https://github.com/alincode/chip1stop-scraper.git",
     "digikey-cn-scraper": "git+https://github.com/alincode/digikey-cn-scraper.git",
     "digikey-tw-scraper": "git+https://github.com/alincode/digikey-tw-scraper.git",
     "include-all": "^1.0.0",
