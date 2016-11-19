@@ -1,32 +1,40 @@
-const DigikeyTw = require('digikey-tw-scraper').default;
-const DigikeyCn = require('digikey-cn-scraper').default;
-const Mouser = require('mouser-scraper').default;
-const Chip1stop = require('chip1stop-scraper').default;
-const ChinaRs = require('china-rs-scraper').default;
-const CnElement14Scraper = require('cn-element14-scraper').default;;
-// DigikeyScraper
+const scraperMap = [{
+  url: 'www.digikey.tw',
+  name: 'digikey-tw'
+}, {
+  url: 'www.digikey.com.cn',
+  name: 'digikey-cn'
+}, {
+  url: 'www.mouser.cn',
+  name: 'mouser'
+}, {
+  url: 'www.chip1stop.com',
+  name: 'chip1stop'
+}, {
+  url: 'china.rs-online.com',
+  name: 'china-rs'
+}, {
+  url: 'cn.element14.com',
+  name: 'cn-element14'
+}];
+
+// ScraperService
 let self = module.exports = {
   getResult: async(html, url) => {
-    let grabStrategy = self.getStrategy(html, url);
+    let grabStrategy = await self.getStrategy(html, url);
     let result = await grabStrategy.getResult();
     return result;
   },
-  getStrategy: (html, url) => {
-    // TODO: implement it, maybe like map<sting url, new object>
+  getStrategy: async(html, url) => {
     let grabStrategy;
-    if (url.indexOf('www.digikey.tw') != -1) {
-      grabStrategy = new DigikeyTw(html, url);
-    } else if (url.indexOf('www.digikey.com.cn') != -1) {
-      grabStrategy = new DigikeyCn(html, url);
-    } else if (url.indexOf('www.mouser.cn') != -1) {
-      grabStrategy = new Mouser(html, url);
-    } else if (url.indexOf('www.chip1stop.com') != -1) {
-      grabStrategy = new Chip1stop(html, url);
-    } else if (url.indexOf('china.rs-online.com') != -1) {
-      grabStrategy = new ChinaRs(html, url);
-    } else if (url.indexOf('cn.element14.com') != -1) {
-      grabStrategy = new CnElement14Scraper(html, url);
-    }
+    await Promise.each(scraperMap,
+      function(item, i, length) {
+        if (url.indexOf(item.url) != -1) {
+          // e.g. require('digikey-cn-scraper').default;
+          const GrabStrategy = require(item.name + '-scraper').default;
+          grabStrategy = new GrabStrategy(html, url);
+        }
+      });
     return grabStrategy;
   }
 };
