@@ -3,7 +3,7 @@ const DigikeyCn = require('digikey-cn-scraper').default;
 const Mouser = require('mouser-scraper').default;
 const Chip1stop = require('chip1stop-scraper').default;
 const ChinaRs = require('china-rs-scraper').default;
-
+const CnElement14Scraper = require('cn-element14-scraper').default;;
 // DigikeyScraper
 let self = module.exports = {
   getResult: async(html, url) => {
@@ -24,6 +24,8 @@ let self = module.exports = {
       grabStrategy = new Chip1stop(html, url);
     } else if (url.indexOf('china.rs-online.com') != -1) {
       grabStrategy = new ChinaRs(html, url);
+    } else if (url.indexOf('cn.element14.com') != -1) {
+      grabStrategy = new CnElement14Scraper(html, url);
     }
     return grabStrategy;
   }
