@@ -1,11 +1,26 @@
+import fs from 'fs';
+import path from 'path';
+import utils from 'utility';
+
+function getHtml(fileName) {
+  return new Promise(function(resolve, reject) {
+    fs.readFile(path.join(__dirname, fileName), function(err, data) {
+      if (err) return console.log(err);
+      resolve(data.toString());
+    })
+  });
+}
+
 describe('ParserController', () => {
 
-  it('POST /api/v1/parsers', (done) => {
+  it('POST /api/v1/parsers', async(done) => {
 
+    let html = utils.base64encode(await getHtml('../sample.html'));
     let formData = {
       ip: '104.104.104.104',
       uuid: '00000xxxxx0000',
-      url: 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259'
+      url: 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259',
+      html: html
     };
 
     try {
