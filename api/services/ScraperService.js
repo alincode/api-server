@@ -33,7 +33,8 @@ let self = module.exports = {
       function(item, i, length) {
         if (url.indexOf(item.url) != -1) {
           // e.g. require('digikey-cn-scraper').default;
-          const GrabStrategy = require(item.name + '-scraper').default;
+          const moduleName = item.name + '-scraper';
+          const GrabStrategy = require(moduleName).default;
           grabStrategy = new GrabStrategy(html, url);
         }
       });

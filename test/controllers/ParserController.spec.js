@@ -13,29 +13,58 @@ function getHtml(fileName) {
 
 describe('ParserController', () => {
 
-  it('POST /api/v1/parsers', async(done) => {
+  describe('POST /api/v1/parsers', function() {
+    it('digikey cn', async(done) => {
 
-    let html = utils.base64encode(await getHtml('../sample.html'));
-    let formData = {
-      ip: '47.100.107.1',
-      uuid: 'cc35ef6e5bb0a8ee',
-      url: 'http://www.digikey.com.cn/search/zh/LM358ADT/497-1590-1-ND?recordId=592082',
-      html: html,
-      productId: '123'
-    };
+      let html = utils.base64encode(await getHtml('../sample.html'));
+      let formData = {
+        ip: '47.100.107.1',
+        uuid: 'cc35ef6e5bb0a8ee',
+        url: 'http://www.digikey.com.cn/search/zh/LM358ADT/497-1590-1-ND?recordId=592082',
+        html: html,
+        productId: '123'
+      };
 
-    try {
-      request(sails.hooks.http.app)
-        .post('/api/v1/parsers')
-        .send(formData)
-        .end((err, res) => {
-          let result = res.body;
-          res.statusCode.should.be.equal(200);
-          done(err);
-        });
-    } catch (e) {
-      done(e);
-    }
+      try {
+        request(sails.hooks.http.app)
+          .post('/api/v1/parsers')
+          .send(formData)
+          .end((err, res) => {
+            let result = res.body;
+            res.statusCode.should.be.equal(200);
+            done(err);
+          });
+      } catch (e) {
+        done(e);
+      }
+    });
+
+    it('chip1stop', async(done) => {
+
+      let html = utils.base64encode(await getHtml(
+        '../chip1stop.html'));
+      let formData = {
+        ip: '47.100.107.1',
+        uuid: 'cc35ef6e5bb0a8ee',
+        url: 'http://www.chip1stop.com/web/CHN/zh/dispDetail.do?partId=MAXI-0011689',
+        html: html,
+        productId: '123'
+      };
+
+      try {
+        request(sails.hooks.http.app)
+          .post('/api/v1/parsers')
+          .send(formData)
+          .end((err, res) => {
+            let result = res.body;
+            res.statusCode.should.be.equal(200);
+            result.success.should.equal(true);
+            done(err);
+          });
+      } catch (e) {
+        done(e);
+      }
+    });
   });
 
   it('POST /api/v1/parsers, it is not allow website', async(done) => {
