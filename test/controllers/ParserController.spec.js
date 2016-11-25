@@ -37,6 +37,32 @@ describe('ParserController', () => {
     }
   });
 
+  it('POST /api/v1/parsers, it is not allow website', async(done) => {
+
+    let html = utils.base64encode(await getHtml('../sample.html'));
+    let formData = {
+      ip: '104.104.104.104',
+      uuid: '00000xxxxx0000',
+      url: 'http://www.google.com',
+      html: html
+    };
+
+    try {
+      request(sails.hooks.http.app)
+        .post('/api/v1/parsers')
+        .send(formData)
+        .end((err, res) => {
+          let result = res.body;
+          res.statusCode.should.be.equal(200);
+          result.success.should.equal(false);
+          result.message.should.equal('it is not allow website');
+          done(err);
+        });
+    } catch (e) {
+      done(e);
+    }
+  });
+
   it('POST /api/v1/batch/parsers', (done) => {
     let formData = {
       ip: '104.104.104.104',

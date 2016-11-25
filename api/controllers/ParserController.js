@@ -34,7 +34,10 @@ module.exports = {
 				});
 			}
 		} catch (e) {
-			return res.serverError(e);
+			return res.ok({
+				success: false,
+				message: e.message
+			});
 		}
 	},
 	batch: async(req, res) => {

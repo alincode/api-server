@@ -22,6 +22,7 @@ const scraperMap = [{
 let self = module.exports = {
   getResult: async(html, url) => {
     let grabStrategy = await self.getStrategy(html, url);
+    if (!grabStrategy) throw new Error('it is not allow website');
     let result = await grabStrategy.getResult();
     return result;
   },
