@@ -14,11 +14,11 @@ module.exports = {
 		}
 	},
 	create: async(req, res) => {
-		try {
-			const {
-				html, url, uuid, ip
-			} = req.body;
+		const {
+			html, url, uuid, ip
+		} = req.body;
 
+		try {
 			const grabStore = await GrabStoreService.save(url, ip, uuid, html)
 			if (grabStore) {
 				let results = [];
@@ -35,6 +35,7 @@ module.exports = {
 				});
 			}
 		} catch (e) {
+			const parseError = await ParseErrorService.save(url, ip, uuid, html);
 			return res.ok({
 				success: false,
 				message: e.message
