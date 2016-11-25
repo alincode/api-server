@@ -24,6 +24,7 @@ let self = module.exports = {
     let grabStrategy = await self.getStrategy(html, url);
     if (!grabStrategy) throw new Error('it is not allow website');
     let result = await grabStrategy.getResult();
+
     return result;
   },
   getStrategy: async(html, url) => {

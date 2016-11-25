@@ -15,11 +15,12 @@ module.exports = {
 	},
 	create: async(req, res) => {
 		const {
-			html, url, uuid, ip
+			html, url, uuid, ip, productId
 		} = req.body;
 
 		try {
-			const grabStore = await GrabStoreService.save(url, ip, uuid, html)
+			const grabStore = await GrabStoreService.save(url, ip, uuid, html,
+				productId);
 			if (grabStore) {
 				let results = [];
 				results.push(grabStore);
@@ -51,11 +52,11 @@ module.exports = {
 			let grabStores = [];
 			await Promise.each(data, async(row) => {
 				let {
-					html, url
+					html, url, productId
 				} = row;
 
 				let grabStore = await GrabStoreService.save(url, ip, uuid, html,
-					batchId);
+					productId, batchId);
 				grabStores.push(grabStore);
 				return row;
 			});
