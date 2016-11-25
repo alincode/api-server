@@ -4,9 +4,10 @@ module.exports = {
 		try {
 			const data = req.body;
 			let grabStores = await GrabStore.find();
+			let results = await PickResultService.getRemoveHtmlResult(grabStores);
 			return res.ok({
 				success: true,
-				results: grabStores
+				results: results
 			});
 		} catch (e) {
 			return res.serverError(e);
