@@ -13,14 +13,15 @@ function getHtml(fileName) {
 
 describe('ParserController', () => {
 
-  it('POST /api/v1/parsers', async(done) => {
+  it.only('POST /api/v1/parsers', async(done) => {
 
     let html = utils.base64encode(await getHtml('../sample.html'));
     let formData = {
-      ip: '104.104.104.104',
-      uuid: '00000xxxxx0000',
-      url: 'http://www.digikey.tw/product-detail/zh/comchip-technology/ZENER-KIT/641-1426-ND/2217259',
-      html: html
+      ip: '47.100.107.1',
+      uuid: 'cc35ef6e5bb0a8ee',
+      url: 'http://www.digikey.com.cn/search/zh/LM358ADT/497-1590-1-ND?recordId=592082',
+      html: html,
+      productId: '123'
     };
 
     try {
@@ -41,10 +42,11 @@ describe('ParserController', () => {
 
     let html = utils.base64encode(await getHtml('../sample.html'));
     let formData = {
-      ip: '104.104.104.104',
-      uuid: '00000xxxxx0000',
+      ip: '47.100.107.1',
+      uuid: 'cc35ef6e5bb0a8ee',
       url: 'http://www.google.com',
-      html: html
+      html: html,
+      productId: '123'
     };
 
     try {
