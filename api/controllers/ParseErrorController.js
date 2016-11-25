@@ -2,7 +2,8 @@
 module.exports = {
   find: async(req, res) => {
     try {
-      let results = await ParseError.find();
+      let parseErrors = await ParseError.find();
+      let results = await PickResultService.getRemoveHtmlResult(parseErrors);
       return res.ok({
         results: results
       });
