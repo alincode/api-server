@@ -13,7 +13,7 @@ function getHtml(fileName) {
 
 describe('ParserController', () => {
 
-  it.only('POST /api/v1/parsers', async(done) => {
+  it('POST /api/v1/parsers', async(done) => {
 
     let html = utils.base64encode(await getHtml('../sample.html'));
     let formData = {
