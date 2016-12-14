@@ -11,7 +11,6 @@
  */
 
 module.exports = {
-  port: process.env.API_PORT || 9960,
   // log: {
   //   level: 'verbose'
   // }
