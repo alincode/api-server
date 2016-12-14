@@ -11,7 +11,6 @@
  */
 
 module.exports = {
-  domain: process.env.API_DOMAIN || 'http://localhost/',
   port: process.env.API_PORT || 9960,
   // log: {
   //   level: 'verbose'
