@@ -13,6 +13,7 @@
     "include-all": "^1.0.0",
     "mouser-scraper": "git+https://github.com/alincode/mouser-scraper.git",
     "rc": "1.0.1",
+    "request-promise": "^4.1.1",
     "sails": "~0.12.9",
     "sails-disk": "~0.10.9",
     "sails-hook-autoreload": "^0.13.2",
