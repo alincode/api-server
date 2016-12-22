@@ -33,7 +33,6 @@ module.exports.routes = {
    ***************************************************************************/
   'get /api/v1/parsers': 'ParserController.find',
   'post /api/v1/parsers': 'ParserController.create',
-  'post /api/v1/bot': 'ParserController.bot',
   'post /api/v1/batch/parsers': 'ParserController.batch',
   'get /api/v1/errors': 'ParseErrorController.find',
 
