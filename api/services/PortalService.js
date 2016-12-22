@@ -1,6 +1,6 @@
 var rp = require('request-promise');
 
-const PORTAL_DOMAIN = 'http://122.116.142.181:5959/';
+const PORTAL_DOMAIN = ' https://www.icquery.com/';
 
 let self = module.exports = {
   updatePrice: async(productId, amount, priceStores) => {
