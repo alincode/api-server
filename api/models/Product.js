@@ -30,13 +30,12 @@ module.exports = {
       type: 'boolean',
       required: true
     },
-    suppliers: {
-      collection: 'supplier', // map to identity
-      via: 'product'
-    },
     PriceStores: {
       collection: 'priceStore', // map to identity
       via: 'product'
+    },
+    supplier: {
+      model: 'supplier'
     }
   }
 };
