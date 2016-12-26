@@ -1,17 +1,34 @@
+// https://github.com/balderdashy/waterline-docs
 // PriceStore
 module.exports = {
   tableName: 'price_stores',
   attributes: {
     amount: {
-      type: 'number',
+      type: 'float',
       required: true
     },
     unitPrice: {
-      type: 'number',
+      type: 'integer',
       required: true
     },
-    product: {
-      model: 'product'
+    supplierId: {
+      type: 'integer',
+      required: true
+    },
+    sku: {
+      type: 'string',
+      required: true
+    },
+    mfs: {
+      type: 'string',
+      required: true
+    },
+    pn: {
+      type: 'string',
+      required: true
+    },
+    productId: {
+      type: 'number'
     }
   }
 };

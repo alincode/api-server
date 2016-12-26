@@ -9,10 +9,6 @@ module.exports = {
     name: {
       type: 'string',
       required: true
-    },
-    products: {
-      collection: 'product',
-      via: 'supplier'
     }
   }
 };
