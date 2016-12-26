@@ -6,6 +6,7 @@ module.exports = {
       if (grabStore.priceStores) {
         grabStore.priceStores.forEach((priceStore) => {
           let newPriceStore = {
+            currency: grabStore.currency,
             amount: priceStore.amount,
             unitPrice: priceStore.unitPrice,
             supplierId: parseInt(grabStore.supplierId),

@@ -3,6 +3,10 @@
 module.exports = {
   tableName: 'price_stores',
   attributes: {
+    currency: {
+      type: 'string',
+      required: true
+    },
     amount: {
       type: 'float',
       required: true
