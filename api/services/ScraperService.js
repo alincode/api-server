@@ -1,23 +1,3 @@
-const scraperMap = [{
-  url: 'www.digikey.tw',
-  name: 'digikey-tw'
-}, {
-  url: 'www.digikey.com.cn',
-  name: 'digikey-cn'
-}, {
-  url: 'www.mouser.cn',
-  name: 'mouser'
-}, {
-  url: 'www.chip1stop.com',
-  name: 'chip1stop'
-}, {
-  url: 'china.rs-online.com',
-  name: 'china-rs'
-}, {
-  url: 'cn.element14.com',
-  name: 'cn-element14'
-}];
-
 // ScraperService
 let self = module.exports = {
   getResult: async(html, url) => {
@@ -29,7 +9,8 @@ let self = module.exports = {
   },
   getStrategy: async(html, url) => {
     let grabStrategy;
-    await Promise.each(scraperMap,
+    const suppliers = await SupplierService.getSuppliers();
+    await Promise.each(suppliers,
       function(item, i, length) {
         if (url.indexOf(item.url) != -1) {
           // e.g. require('digikey-cn-scraper').default;
