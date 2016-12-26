@@ -33,7 +33,8 @@ module.exports = {
       if (html) result.html = html;
       if (batchId) result.batchId;
       if (result.sku) {
-        result.productId = setProductId(result, supplierId, productId);
+        // result.productId = setProductId(result, supplierId, productId);
+        result.productId = productId;
         let grabStore = await GrabStore.create(result);
         delete grabStore.html;
         return grabStore;

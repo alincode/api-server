@@ -31,9 +31,10 @@ module.exports = {
 		}
 
 		try {
-			if (productId && grabStore.amount && grabStore.priceStores) {
-				sails.log('update price to portal done.');
-				await PortalService.updatePrice(productId, grabStore.amount, grabStore.priceStores);
+			if (grabStore.amount && grabStore.priceStores) {
+				await PriceStoreService.create(grabStore);
+				// sails.log('update price to portal done.');
+				// await PortalService.updatePrice(productId, grabStore.amount, grabStore.priceStores);
 			}
 		} catch (e) {
 			sails.log.error(
