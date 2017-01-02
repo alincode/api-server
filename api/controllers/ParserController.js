@@ -3,7 +3,10 @@ module.exports = {
 	find: async(req, res) => {
 		try {
 			const data = req.body;
-			let grabStores = await GrabStore.find();
+			let grabStores = await GrabStore.find({
+				limit: 10,
+				sort: 'createdAt DESC'
+			});
 			let results = await PickResultService.getRemoveHtmlResult(grabStores);
 			return res.ok({
 				success: true,
