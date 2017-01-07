@@ -9,7 +9,7 @@ module.exports = {
 				sort: 'createdAt DESC'
 			};
 
-			if (supplierId) options.supplierId = supplierId;
+			if (supplierId) options.supplierId = parseInt(supplierId);
 
 			let grabStores = await GrabStore.find(options);
 			let results = await PickResultService.getRemoveHtmlResult(grabStores);
