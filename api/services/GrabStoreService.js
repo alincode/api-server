@@ -35,7 +35,9 @@ module.exports = {
       if (result.sku) {
         // result.productId = setProductId(result, supplierId, productId);
         result.productId = productId;
-        let grabStore = await GrabStore.create(result);
+        let grabStore = await GrabStore.findOrCreate({
+          url: url
+        }, result);
         delete grabStore.html;
         return grabStore;
       } else {

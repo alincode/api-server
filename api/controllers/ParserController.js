@@ -3,10 +3,15 @@ module.exports = {
 	find: async(req, res) => {
 		try {
 			const data = req.body;
-			let grabStores = await GrabStore.find({
+			const supplierId = req.query.supplierId;
+			let options = {
 				limit: 10,
 				sort: 'createdAt DESC'
-			});
+			};
+
+			if (supplierId) options.supplierId = supplierId;
+
+			let grabStores = await GrabStore.find(options);
 			let results = await PickResultService.getRemoveHtmlResult(grabStores);
 			return res.ok({
 				success: true,
