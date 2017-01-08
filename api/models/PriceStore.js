@@ -5,31 +5,31 @@ module.exports = {
   attributes: {
     currency: {
       type: 'string',
-      required: true
+      // required: true
     },
     amount: {
       type: 'float',
-      required: true
+      // required: true
     },
     unitPrice: {
       type: 'integer',
-      required: true
+      // required: true
     },
     supplierId: {
       type: 'integer',
-      required: true
+      // required: true
     },
     sku: {
       type: 'string',
-      required: true
+      // required: true
     },
     mfs: {
       type: 'string',
-      required: true
+      // required: true
     },
     pn: {
       type: 'string',
-      required: true
+      // required: true
     },
     productId: {
       type: 'number'
