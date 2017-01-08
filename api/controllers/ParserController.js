@@ -28,7 +28,10 @@ module.exports = {
 
 		let grabStore;
 		try {
-			grabStore = await GrabStoreService.save(url, ip, uuid, html, productId);
+			let decodeHtml = html;
+			if (html) decodeHtml = utils.base64decode(html);
+			grabStore = await GrabStoreService.save(url, ip, uuid, decodeHtml,
+				productId);
 			if (!grabStore) throw new Error('DB save failure.');
 		} catch (e) {
 			const parseError = await ParseErrorService.save(url, ip, uuid, html);

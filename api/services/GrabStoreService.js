@@ -22,16 +22,16 @@ module.exports = {
   save: async(url, ip, uuid, html, productId, batchId) => {
     try {
       let decodeHtml;
-      if (html) decodeHtml = utils.base64decode(html);
-      let result = await ScraperService.getResult(decodeHtml, url);
+      let result = await ScraperService.getResult(html, url);
       let supplierId = await SupplierService.getSupplierId(url);
       result.supplierId = supplierId;
       result.url = url;
       result.ip = ip;
       result.uuid = uuid;
 
-      if (html) result.html = html;
+      // if (html) result.html = html;
       if (batchId) result.batchId;
+
       if (result.sku) {
         // result.productId = setProductId(result, supplierId, productId);
         result.productId = productId;
