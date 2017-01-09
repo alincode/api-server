@@ -26,19 +26,19 @@ module.exports = {
       let supplierId = await SupplierService.getSupplierId(url);
       result.supplierId = supplierId;
       result.url = url;
-      result.ip = ip;
-      result.uuid = uuid;
 
-      // if (html) result.html = html;
+      let grabStoreData = result;
+      grabStoreData.ip = ip;
+      grabStoreData.uuid = uuid;
+
       if (batchId) result.batchId;
 
       if (result.sku) {
         // result.productId = setProductId(result, supplierId, productId);
         result.productId = productId;
-        let grabStore = await GrabStore.findOrCreate({
-          url: url
-        }, result);
-        delete grabStore.html;
+        let grabStore = await GrabStore.create(grabStoreData);
+        await ProductService.save(result);
+        await HtmlSourceService.save(url, html, supplierId);
         return grabStore;
       } else {
         return;
